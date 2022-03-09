@@ -8,7 +8,10 @@ public:
 	Complex(float x, float y){real=x;imag=y;}
 	void set_val(float x, float y){real=x;imag=y;}
 	friend Complex sum(const Complex& c1, const Complex &c2);
-	void show(){std::cout << real << " + " << imag << "i\n";}
+	void show()
+	{
+		std::cout << real << ((imag > 0) ? " + " : " - ") << ((imag > 0) ? imag : -1 * imag) << "i\n";
+	}
 };
 
 Complex sum(const Complex& c1, const Complex &c2)
@@ -20,8 +23,13 @@ Complex sum(const Complex& c1, const Complex &c2)
 
 int main()
 {
-	Complex c1(1.5, 6.7);
-	Complex c2(12.4, 5.6);
+	float real, imag;
+	std::cout << "Enter complex number 1: ";
+	std::cin >> real >> imag;
+	Complex c1(real, imag);
+	std::cout << "Enter complex number 2: ";
+	std::cin >> real >> imag;
+	Complex c2(real, imag);
 	Complex c3 = sum(c1, c2);
 	c3.show();
 }

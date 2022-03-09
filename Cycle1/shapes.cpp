@@ -117,7 +117,48 @@ double area(Octagon o)
 
 int main()
 {
-    Pentagon r1;
-    r1.setside();
-    std::cout << "Area = " << area(r1) << '\n';
+	int ch = 0;
+	Square s1;
+	Rectangle r1;
+	Triangle t1;
+	Pentagon p1;
+	Octagon o1;
+	do
+	{
+		std::cout << "1.Square\n2.Rectangle\n3.Triangle\n4.Pentagon\n5.Octagon\n6.END\n>>> ";
+		std::cin >> ch;
+		switch (ch)
+		{
+			case 1:
+				s1.setside();
+				std::cout << "\nArea = " << area(s1) << "\n\n";
+				break;
+
+			case 2:
+				r1.setlb();
+				std::cout << "\nArea = " << area(r1) << "\n\n";
+				break;
+
+			case 3:
+				t1.setsides();
+				std::cout << "\nArea = " << area(t1) << "\n\n";
+				break;
+
+			case 4:
+				p1.setside();
+				std::cout << "\nArea = " << area(p1) << "\n\n";
+				break;
+
+			case 5:
+				o1.setside();
+				std::cout << "\nArea = " << area(o1) << "\n\n";
+				break;
+
+			case 6:
+				break;
+
+			default:
+				std::cout << "\nInvalid choice!\n";
+		}
+	} while (ch != 6);
 }

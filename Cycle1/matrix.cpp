@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstring>
+#include <cmath>
 #include <assert.h>
 
 class Matrix
@@ -182,9 +184,7 @@ public:
                     }
                 }
             }
-            std::cout << "Slice" << '\n';
-            slice.print_matrix();
-            det += std::pow(-1, j) * slice.matrix_determinant();
+            det += std::pow(-1, j) * get(0, j) * slice.matrix_determinant();
         }
         return det;
     }
@@ -192,20 +192,7 @@ public:
 
 int main()
 {
-    int vals1[4]{1, 2, 3, 4};
-    int vals2[4]{1, 0, 0, 1};
-    Matrix m1(2, 2, vals1);
-    m1.print_matrix();
-    Matrix m2(2, 2, vals2);
-    m2.print_matrix();
-    Matrix m3 = m1.matrix_mult(m2);
-    m3.print_matrix();
-    Matrix m4 = m3.matrix_transpose();
-    m4.print_matrix();
-    Matrix m5 = m3.matrix_add(m4);
-    m5.print_matrix();
-    int vals3[]{1, 0, 0, 0, 1, 0, 0, 0, 1};
-    Matrix mt(3, 3, vals3);
-    mt.print_matrix();
-    std::cout << "determinant: " << mt.matrix_determinant() << '\n';
+    int vals[]{1, 2, 3, 4, 3, 3, 2, 1, 1, 3, 4, 3, 2, 3, 4, 6};
+	Matrix mt(4, 4, vals);
+	std::cout << mt.matrix_determinant() << '\n';
 }

@@ -15,7 +15,7 @@ public:
 
 void Student::input()
 {
-    std::cout << "Enter name: ";
+    std::cout << "\nEnter name: ";
     std::cin >> name;
     std::cout << "Enter roll no: ";
     std::cin >> roll_no;
@@ -47,14 +47,14 @@ char Student::calcGrade()
         return 'D';
     else if (avg >= 50)
         return 'E';
-    else if (avg >= 40)
-        return 'F';
     else
-        return 'G';
+        return 'F';
 }
 
 void Student::display()
 {
+	std::cout << "\nREPORT\n";
+	std::cout << "----------------------------------------";
     std::cout << '\n'
               << "Name: " << name << '\n';
     std::cout << "Roll no: " << roll_no << '\n';
@@ -63,6 +63,7 @@ void Student::display()
         std::cout << "Marks in subject " << i + 1 << ": " << marks[i] << '\n';
     }
     std::cout << "Grade: " << calcGrade() << '\n';
+	std::cout << "----------------------------------------\n";
 }
 
 int main()
@@ -83,5 +84,5 @@ int main()
         student_list[i].display();
     }
 
-    delete student_list;
+    delete[] student_list;
 }

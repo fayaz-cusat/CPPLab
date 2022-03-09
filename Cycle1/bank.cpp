@@ -6,7 +6,7 @@ class Account;
 
 class Bank
 {
-    int n;
+    int n, last_acc = 0;
     Account **accounts;
 
 public:
@@ -118,18 +118,20 @@ void Bank::open_acc()
         std::cin >> bal_str;
         bal = std::stod(bal_str);
     } while (bal < MIN_BALANCE);
-    n += 1;
-    Account *acc = new Account(name, type, n, bal);
+    n++;
+	last_acc++;
+    Account *acc = new Account(name, type, last_acc, bal);
     Account **new_list = new Account *[n];
     for (int i = 0; i < n - 1; i++)
     {
         new_list[i] = accounts[i];
+		delete accounts[i];
     }
     new_list[n - 1] = acc;
-    delete accounts;
+    delete[] accounts;
     accounts = new_list;
 
-    std::cout << "Your account number is: " << n << "\n\n";
+    std::cout << "Your account number is: " << last_acc << "\n\n";
 }
 
 void Bank::close_acc()
@@ -142,7 +144,7 @@ void Bank::close_acc()
     std::cin >> num_str;
     num = std::stoi(num_str);
 
-    n -= 1;
+    n--;
     Account **new_list = new Account *[n];
 
     for (int i = 0; i < n + 1; i++)
@@ -163,7 +165,7 @@ void Bank::close_acc()
         return;
     }
 
-    delete accounts;
+    delete[] accounts;
     delete acc;
     accounts = new_list;
 
@@ -220,6 +222,8 @@ int main()
     Bank bank;
     Account *acc;
 
+	print_header("BANK");
+
     do
     {
         std::cout << "1. Open New Account\n2. Withdrawal\n3. Deposit\n4. Balance Enquiry\n5. Account Statement\n6. Close Account\n7. Exit\n";
@@ -242,8 +246,8 @@ int main()
             bank.deposit();
             break;
         case 4:
+			acc = bank.get_acc();
             print_header("Balance enquiry");
-            acc = bank.get_acc();
             if (!acc)
             {
                 std::cout << "No such account exists.\n\n";
@@ -252,8 +256,8 @@ int main()
             acc->balance_enquiry();
             break;
         case 5:
-            print_header("Account Statement");
             acc = bank.get_acc();
+			print_header("Account Statement");
             if (!acc)
             {
                 std::cout << "No such account exists.\n\n";

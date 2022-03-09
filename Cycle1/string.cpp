@@ -1,84 +1,84 @@
 #include <iostream>
+#include <string>
+#include <cstring>
 
-class String:
+class String
 {
-    char *arr;
-    int len;
-
-    String(int n)
-    {
-        len = n;
-        arr = new char[n];
-    }
-    int lenFromCharArray(char arr[])
-    {
-        int i;
-        for (i = 0; arr[i] != '\0'; i++)
-            ;
-        return i;
-    }
-
-    char *copyArray(char src[], char dest[], int n)
-    {
-        for (int i = 0; i < n; dest[i] = src[i++])
-            ;
-        return dest;
-    }
-
+	char *arr;
+	int len;
+	
 public:
-    String()
-    {
-        len = 1;
-        arr = new char[]{'\0'};
-    }
-    String(char arr[]) : String(arr, lenFromCharArray(arr)) {}
-    String(char arr[], int n)
-    {
-        len = n;
-        this->arr = new char[len];
-        copyArray(arr, (this->arr), n);
-    }
-
-    bool operator==(const String &str)
-    {
-        if (len != str.len)
-            return false;
-        for (int i = 0; i < len; i++)
-            if (arr[i] != str.arr[i])
-                return false;
-        return true;
-    }
-
-    int length()
-    {
-        return len;
-    }
-
-    String operator+(const String &str)
-    {
-        int outLen = len + str.len;
-        String out = String(outLen);
-        copyArray(arr, out.arr, len);
-        copyArray(str.arr, out.arr + len, str.len);
-        return out;
-    }
-
-    char *c_str()
-    {
-        return arr;
-    }
-
-    friend std::ostream &operator<<(std::ostream &os, String &str)
-    {
-        return os << str.c_str();
-    }
+	String(int n){len = n; arr = new char[n + 1];}
+	String(char *input);
+	String operator+(const String &str2);
+	bool operator>(const String &str2);
+	bool operator<(const String &str2);
+	bool operator==(const String &str2);
+	void display();
 };
+
+String::String(char *input)
+{
+	len = std::strlen(input);
+	arr = new char[len + 1];
+	std::strcpy(arr, input);
+}
+
+String String::operator+(const String &str2)
+{
+	String s3(len + str2.len);
+	std::strcpy(s3.arr, arr);
+	std::strcpy(s3.arr + len, str2.arr);
+	return s3;
+}
+
+bool String::operator==(const String &str)
+{
+	if (len != str.len)
+		return false;
+	for (int i = 0; i < len; i++)
+		if (arr[i] != str.arr[i])
+			return false;
+	return true;
+}
+
+bool String::operator>(const String &str)
+	{
+		if (len > str.len)
+			return false;
+		else
+			return true;
+	}
+	
+bool String::operator<(const String &str)
+{
+	if (len < str.len)
+		return true;
+	else
+		return false;
+}
+
+void String::display()
+{
+	std::cout << arr << '\n';
+}
 
 int main()
 {
-    String s1 = String("Hello");
-    String s2 = String(" World!");
-    String s3 = s1 + s2;
-    std::cout << s3;
-    return 0;
+	char input1[1024], input2[1024];
+	std::cout << "Enter first string: ";
+	std::cin.getline(input1, sizeof(input1));
+	std::cout << "Enter second string: ";
+	std::cin.getline(input2, sizeof(input2));
+	String s1(input1), s2(input2);
+	String s3 = s1 + s2;
+	std::cout << "Concatenated: "; s3.display();
+	if (s1 == s2)
+		std::cout << "Strings are equal\n";
+	else if (s1 > s2)
+		std::cout << "String 1 is greater\n";
+	else if (s2 < s1)
+		std::cout << "String 2 is greater\n";
 }
+
+	

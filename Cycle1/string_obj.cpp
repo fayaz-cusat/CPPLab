@@ -1,4 +1,7 @@
 #include <iostream>
+#include <string>
+#include <cstring>
+
 
 class String
 {
@@ -53,14 +56,21 @@ String concat(const String &str1, const String &str2)
 
 int main()
 {
-    String str1("Hello");
-    String str2(" World!");
-    String str3("Hello");
+	char input1[1024], input2[1024];
+	std::cout << "Enter first string: ";
+	std::cin.getline(input1, sizeof(input1));
+	std::cout << "Enter second string: ";
+	std::cin.getline(input2, sizeof(input2));
+	
+	String str1(input1);
+	String str2(input2);
 
-    std::cout << (str1 == str2) << '\n';
-    std::cout << (str1 == str3) << '\n';
+    if (str1 == str2)
+		std::cout << "Strings are equal\n";
+	else
+		std::cout << "Strings are not equal\n";
 
-    String str4 = concat(str1, str2);
+    String str3 = concat(str1, str2);
 
-    std::cout << str4.get_arr() << '\n';
+    std::cout << "Concatenated string is " << str3.get_arr() << '\n';
 }

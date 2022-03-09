@@ -51,14 +51,20 @@ Time add_time(Time t1, Time t2)
     std::cout << "Hours: " << t3.hours << ", ";
     std::cout << "Minutes: " << t3.minutes << ", ";
     std::cout << "Seconds: " << t3.seconds;
+	std::cout << '\n';
 
     return t3;
 }
 
 int main()
 {
-    Time t1(10, 59, 59);
-    Time t2(2, 0, 1);
+	int h, m, s;
+	std::cout << "Enter time 1: ";
+	std::cin >> h >> m >> s;
+    Time t1(h, m, s);
+	std::cout << "Enter time 2: ";
+	std::cin >> h >> m >> s;
+    Time t2(h, m, s);
 
     add_time(t1, t2);
 }
