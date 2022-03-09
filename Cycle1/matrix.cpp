@@ -192,7 +192,7 @@ public:
 
 int main()
 {
-    int vals[]{1, 2, 3, 4, 3, 3, 2, 1, 1, 3, 4, 3, 2, 3, 4, 6};
-	Matrix mt(4, 4, vals);
-	std::cout << mt.matrix_determinant() << '\n';
+    int nrows, ncols;
+	std::cout << "Enter dimensions of matrix 1: ";
+	std::cin >> nrows >> ncols;
 }
