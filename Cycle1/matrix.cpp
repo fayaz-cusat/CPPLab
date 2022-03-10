@@ -126,7 +126,11 @@ public:
 
     Matrix matrix_mult(const Matrix &m)
     {
-        assert(ncols == m.nrows);
+        if (ncols != m.nrows)
+        {
+            std::cout << "Cannot multiply matrices with these shapes.";
+            return Matrix();
+        }
         Matrix out(nrows, m.ncols);
         for (int i = 0; i < nrows; i++)
         {
@@ -192,7 +196,39 @@ public:
 
 int main()
 {
-    int nrows, ncols;
-	std::cout << "Enter dimensions of matrix 1: ";
-	std::cin >> nrows >> ncols;
+    int nrows, ncols, i;
+    std::cout << "Enter dimensions of matrix 1: ";
+    std::cin >> nrows >> ncols;
+    int *arr = new int[nrows * ncols];
+    std::cout << "Enter rows of matrix 1:\n";
+    for (i = 0; i < nrows * ncols; i++)
+        std::cin >> arr[i];
+    std::cout << '\n';
+    Matrix m1(nrows, ncols, arr);
+    std::cout << "Enter dimensions of matrix 2: ";
+    std::cin >> nrows >> ncols;
+    arr = new int[nrows * ncols];
+    std::cout << "Enter rows of matrix 2:\n";
+    for (i = 0; i < nrows * ncols; i++)
+        std::cin >> arr[i];
+    Matrix m2(nrows, ncols, arr);
+    std::cout << '\n';
+
+    std::cout << "SUM OF MATRICES\n";
+    m1.matrix_add(m2).print_matrix();
+
+    std::cout << "PRODUCT OF MATRICES\n";
+    m1.matrix_mult(m2).print_matrix();
+
+    std::cout << "TRANSPOSE OF MATRIX 1\n";
+    m1.matrix_transpose().print_matrix();
+
+    std::cout << "TRANSPOSE OF MATRIX 2\n";
+    m2.matrix_transpose().print_matrix();
+
+    std::cout << "DETERMINANT OF MATRIX 1\n";
+    std::cout << m1.matrix_determinant() << '\n';
+
+    std::cout << "DETERMINANT OF MATRIX 2\n";
+    std::cout << m2.matrix_determinant() << '\n';
 }
