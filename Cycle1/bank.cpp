@@ -61,10 +61,8 @@ double Account::withdraw(double amount)
     }
     else if (balance - amount < MIN_BALANCE)
     {
-        std::cout << "Account must have a minimum balance of " << MIN_BALANCE << '\n'
-                  << "Withdrawing " << amount - MIN_BALANCE
-                  << "...\n\n";
-        balance = MIN_BALANCE;
+        std::cout << "Balance cannot be less than " << MIN_BALANCE << '\n';
+	return 0;
     }
     else
     {

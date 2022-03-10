@@ -5,7 +5,7 @@ class Student
 {
     std::string name;
     int roll_no;
-    int marks[3];
+    float marks[3];
 
 public:
     void input();
@@ -36,6 +36,8 @@ char Student::calcGrade()
         avg += marks[i];
     }
     avg /= 3;
+	
+	std::cout << "Average marks: " << avg << '\n';
 
     if (avg >= 90)
         return 'A';
@@ -62,7 +64,8 @@ void Student::display()
     {
         std::cout << "Marks in subject " << i + 1 << ": " << marks[i] << '\n';
     }
-    std::cout << "Grade: " << calcGrade() << '\n';
+    char grade = calcGrade();
+	std::cout << "Grade: " << grade << '\n';
 	std::cout << "----------------------------------------\n";
 }
 

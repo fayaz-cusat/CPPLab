@@ -7,7 +7,7 @@ class Point
 public:
 	Point(){count++;}
 	Point(int a, int b){x = a; y = b; count++;}
-	static int showcount(){std::cout << count << '\n'; return count;}
+	static void showcount(){std::cout << count << '\n';}
 };
 
 int Point::count = 0;
@@ -26,7 +26,7 @@ int main()
 			std::cin >> x;
 			std::cin >> y;
 			Point pt(x, y);
-			std::cout << "Number of points created: "; pt.showcount();
+			std::cout << "Number of points created: "; Point::showcount();
 		}
 		else if (ch != 2)
 		{

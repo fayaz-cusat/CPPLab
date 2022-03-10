@@ -105,7 +105,7 @@ void ShoppingList::menu()
 	float price = 0;
 	do
 	{
-		std::cout << "1.Add item to inventory\n2.Remove item from inventory\n3.Place Order\n4.Exit\n";
+		std::cout << "1.Add item to inventory\n2.Remove item from inventory\n3.Place Order\n4.Exit\n>>> ";
 		std::cin >> ch;
 		if (ch == 1)
 		{
