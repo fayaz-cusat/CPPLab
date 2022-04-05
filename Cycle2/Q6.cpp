@@ -70,7 +70,7 @@ public:
     void show()
     {
         std::cout << "\nREPORT\n";
-        std::cout << "----------------------------------------\n";
+        std::cout << "-------------------------------------------------------------------------------\n";
         student::get_roll();
         int num_subs = test::get_num_subs();
         float *marks = test::get_marks();
@@ -78,7 +78,7 @@ public:
         for (int i = 0; i < num_subs; i++)
             total += marks[i];
         std::cout << "Total marks obtained: " << total << '\n';
-        std::cout << "----------------------------------------\n";
+        std::cout << "-------------------------------------------------------------------------------\n";
     }
 };
 

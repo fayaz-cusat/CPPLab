@@ -1,5 +1,5 @@
 #include <iostream>
-#include <string>
+#include <cstring>
 #include <cmath>
 
 class vector
@@ -122,7 +122,11 @@ int main()
             break;
         case 7:
             break;
+		default:
+			continue;
         }
+		if (ch == 7)
+			break;
         if (res == true)
             std::cout << "TRUE\n\n";
         else

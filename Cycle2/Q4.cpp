@@ -6,7 +6,7 @@ class matrix
     int **p;
 
 public:
-    matrix(){};
+    matrix(){nrows = 0; ncols = 0; p = NULL;};
     matrix(int x, int y)
     {
         nrows = x;
@@ -18,15 +18,6 @@ public:
             for (int j = 0; j < ncols; j++)
                 p[i][j] = 0;
         }
-    }
-
-    ~matrix()
-    {
-        for (int i = 0; i < nrows; i++)
-        {
-            delete[] p[i];
-        }
-        delete[] p;
     }
 
     matrix operator+(matrix &M)
@@ -97,7 +88,7 @@ int main()
                 res = m1 + m2;
                 res.show();
             }
-            catch (char *msg)
+            catch (const char *msg)
             {
                 std::cout << msg << "\n\n";
             }
@@ -109,7 +100,7 @@ int main()
                 res = m1 * m2;
                 res.show();
             }
-            catch (char *msg)
+            catch (const char *msg)
             {
                 std::cout << msg << "\n\n";
             }

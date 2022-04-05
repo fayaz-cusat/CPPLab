@@ -108,7 +108,7 @@ int main()
         if (ch != 5)
         {
             shape->setup();
-            std::cout << "Area = " << shape->area() << '\n';
+            std::cout << "Area = " << shape->area() << "\n\n";
             delete shape;
         }
     } while (ch != 5);

@@ -1,5 +1,5 @@
 #include <iostream>
-#include <string>
+#include <cstring>
 
 class vector
 {
@@ -73,10 +73,11 @@ int main()
     std::cout << "Vector 2 = " << v2 << '\n';
     try
     {
-        std::cout << "Dot product = " << v1 * v2 << '\n';
+	int prod = v1 * v2;
+        std::cout << "Dot product = " << prod << '\n';
     }
-    catch (char *msg)
+    catch (const char *msg)
     {
-        std::cout << msg;
+        std::cout << msg << '\n';
     }
 }
