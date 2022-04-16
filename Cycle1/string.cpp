@@ -6,9 +6,13 @@ class String
 {
 	char *arr;
 	int len;
-	
+
 public:
-	String(int n){len = n; arr = new char[n + 1];}
+	String(int n)
+	{
+		len = n;
+		arr = new char[n + 1];
+	}
 	String(char *input);
 	String operator+(const String &str2);
 	bool operator>(const String &str2);
@@ -43,13 +47,13 @@ bool String::operator==(const String &str)
 }
 
 bool String::operator>(const String &str)
-	{
-		if (len > str.len)
-			return false;
-		else
-			return true;
-	}
-	
+{
+	if (len > str.len)
+		return true;
+	else
+		return false;
+}
+
 bool String::operator<(const String &str)
 {
 	if (len < str.len)
@@ -72,13 +76,12 @@ int main()
 	std::cin.getline(input2, sizeof(input2));
 	String s1(input1), s2(input2);
 	String s3 = s1 + s2;
-	std::cout << "Concatenated: "; s3.display();
+	std::cout << "Concatenated: ";
+	s3.display();
 	if (s1 == s2)
 		std::cout << "Strings are equal\n";
 	else if (s1 > s2)
 		std::cout << "String 1 is greater\n";
-	else if (s2 < s1)
+	else if (s1 < s2)
 		std::cout << "String 2 is greater\n";
 }
-
-	

@@ -62,11 +62,6 @@ public:
         init_zeros(0, 0);
     }
 
-	~Matrix()
-	{
-		delete[] arr;
-	}
-
     Matrix(int rows, int cols)
     {
         init_zeros(rows, cols);
@@ -100,10 +95,10 @@ public:
 
     Matrix matrix_add(Matrix &m)
     {
-	if (!(m.nrows == nrows && m.ncols == ncols))
-	{
-		throw 0;
-	}
+        if (!(m.nrows == nrows && m.ncols == ncols))
+        {
+            throw 0;
+        }
         Matrix out(nrows, ncols, arr);
         out.iadd(m);
         return out;
@@ -136,7 +131,7 @@ public:
     {
         if (ncols != m.nrows)
         {
-			throw 0;
+            throw 0;
         }
         Matrix out(nrows, m.ncols);
         for (int i = 0; i < nrows; i++)
@@ -169,10 +164,10 @@ public:
     int matrix_determinant()
     {
         int det = 0;
-		if (nrows != ncols)
-		{
-			throw 0;
-		}
+        if (nrows != ncols)
+        {
+            throw 0;
+        }
         if (nrows == 2)
         {
             det = arr[0] * arr[3] - arr[1] * arr[2];
@@ -224,90 +219,89 @@ int main()
     Matrix m2(nrows, ncols, arr);
     std::cout << '\n';
 
-	do
-	{
-		std::cout << "1.ADD\n2.MULTIPLY\n3.TRANSPOSE\n4.DETERMINANT\n5.END\n>>> ";
-		std::cin >> ch;
-		std::cout << '\n';
-		switch (ch)
-		{
-			case 1:
-				std::cout << "SUM OF MATRICES\n";
-				try
-				{
-				    m1.matrix_add(m2).print_matrix();
-				}
-				catch(int x)
-				{
-					std::cout << "Matrices of different shapes cannot be added.\n";
-				}
-				break;
-			case 2:
-				std::cout << "PRODUCT OF MATRICES\n";
-				try
-				{
-					m1.matrix_mult(m2).print_matrix();
-				}
-				catch(int x)
-				{
-					std::cout << "Incorrect shapes for matrix multiplication.\n";
-				}
-				break;
-			case 3:
-				std::cout << "1.Matrix 1\n2.Matrix 2\n>>> ";
-				std::cin >> ch2;
-				std::cout << '\n';
-				if (ch2 == 1)
-				{
-					std::cout << "TRANSPOSE OF MATRIX 1\n";
-				    m1.matrix_transpose().print_matrix();
-				}
-				else if (ch2 == 2)
-				{
-					std::cout << "TRANSPOSE OF MATRIX 2\n";
-				    m2.matrix_transpose().print_matrix();
-				}
-				else
-				{
-					std::cout << "Invalid choice.\n";
-				}
-				break;
-			case 4:
-				std::cout << "1.Matrix 1\n2.Matrix 2\n>>> ";
-				std::cin >> ch2;
-				std::cout << '\n';
-				if (ch2 == 1)
-				{
-					try
-					{
-						std::cout << "DETERMINANT OF MATRIX 1 = " << m1.matrix_determinant() << "\n\n";
-					}
-			 		catch (int x)
-					{
-						std::cout << "Determinant cannot be found for non square matrices!\n";
-					}
-					
-				}
-				else if (ch2 == 2)
-				{
-					try
-					{
-						std::cout << "DETERMINANT OF MATRIX 2 = " << m2.matrix_determinant() << "\n\n";
-					}
-					catch (int x)
-					{
-						std::cout << "?\nDeterminant cannot be found for non square matrices!\n";
-					}
-				}
-				else
-				{
-					std::cout << "Invalid choice.\n";
-				}
-				break;
-			case 5:
-				break;
-			default:
-				std::cout << "Invalid choice!\n";
-		}
-	} while (ch != 5);
+    do
+    {
+        std::cout << "1.ADD\n2.MULTIPLY\n3.TRANSPOSE\n4.DETERMINANT\n5.END\n>>> ";
+        std::cin >> ch;
+        std::cout << '\n';
+        switch (ch)
+        {
+        case 1:
+            std::cout << "SUM OF MATRICES\n";
+            try
+            {
+                m1.matrix_add(m2).print_matrix();
+            }
+            catch (int x)
+            {
+                std::cout << "Matrices of different shapes cannot be added.\n";
+            }
+            break;
+        case 2:
+            std::cout << "PRODUCT OF MATRICES\n";
+            try
+            {
+                m1.matrix_mult(m2).print_matrix();
+            }
+            catch (int x)
+            {
+                std::cout << "Incorrect shapes for matrix multiplication.\n";
+            }
+            break;
+        case 3:
+            std::cout << "1.Matrix 1\n2.Matrix 2\n>>> ";
+            std::cin >> ch2;
+            std::cout << '\n';
+            if (ch2 == 1)
+            {
+                std::cout << "TRANSPOSE OF MATRIX 1\n";
+                m1.matrix_transpose().print_matrix();
+            }
+            else if (ch2 == 2)
+            {
+                std::cout << "TRANSPOSE OF MATRIX 2\n";
+                m2.matrix_transpose().print_matrix();
+            }
+            else
+            {
+                std::cout << "Invalid choice.\n";
+            }
+            break;
+        case 4:
+            std::cout << "1.Matrix 1\n2.Matrix 2\n>>> ";
+            std::cin >> ch2;
+            std::cout << '\n';
+            if (ch2 == 1)
+            {
+                try
+                {
+                    std::cout << "DETERMINANT OF MATRIX 1 = " << m1.matrix_determinant() << "\n\n";
+                }
+                catch (int x)
+                {
+                    std::cout << "Determinant cannot be found for non square matrices!\n";
+                }
+            }
+            else if (ch2 == 2)
+            {
+                try
+                {
+                    std::cout << "DETERMINANT OF MATRIX 2 = " << m2.matrix_determinant() << "\n\n";
+                }
+                catch (int x)
+                {
+                    std::cout << "?\nDeterminant cannot be found for non square matrices!\n";
+                }
+            }
+            else
+            {
+                std::cout << "Invalid choice.\n";
+            }
+            break;
+        case 5:
+            break;
+        default:
+            std::cout << "Invalid choice!\n";
+        }
+    } while (ch != 5);
 }
