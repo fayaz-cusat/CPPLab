@@ -31,13 +31,21 @@ public:
 
     bool operator==(const vector &vec)
     {
+        bool res;
+
+        res = true;
         if (size != vec.size)
-            return false;
+            res = false;
 
         for (int i = 0; i < size; i++)
             if (arr[i] != vec.arr[i])
-                return false;
-        return true;
+                res = false;
+
+        if (res)
+            std::cout << "The vectors are equal.\n";
+        else
+            std::cout << "The vectors are not equal.\n";
+        return res;
     }
 
     bool operator!=(const vector &vec)
@@ -47,22 +55,46 @@ public:
 
     bool operator>(vector &vec)
     {
-        return length() > vec.length();
+        bool res;
+        res = length() > vec.length();
+        if (res)
+            std::cout << "Magnitude of first vector is greater than magnitude of second vector.\n";
+        else
+            std::cout << "Magnitude of first vector is not greater than magnitude of second vector.\n";
+        return res;
     }
 
     bool operator>=(vector &vec)
     {
-        return length() >= vec.length();
+        bool res;
+        res = length() >= vec.length();
+        if (res)
+            std::cout << "Magnitude of first vector is greater than or equal to magnitude of second vector.\n";
+        else
+            std::cout << "Magnitude of first vector is not greater than or equal to magnitude of second vector.\n";
+        return res;
     }
 
     bool operator<(vector &vec)
     {
-        return length() < vec.length();
+        bool res;
+        res = length() < vec.length();
+        if (res)
+            std::cout << "Magnitude of first vector is lesser than magnitude of second vector.\n";
+        else
+            std::cout << "Magnitude of first vector is not lesser than magnitude of second vector.\n";
+        return res;
     }
 
     bool operator<=(vector &vec)
     {
-        return length() <= vec.length();
+        bool res;
+        res = length() <= vec.length();
+        if (res)
+            std::cout << "Magnitude of first vector is lesser than or equal to magnitude of second vector.\n";
+        else
+            std::cout << "Magnitude of first vector is not lesser than or equal to magnitude of second vector.\n";
+        return res;
     }
 
     void input()
@@ -122,14 +154,11 @@ int main()
             break;
         case 7:
             break;
-		default:
-			continue;
+        default:
+            continue;
         }
-		if (ch == 7)
-			break;
-        if (res == true)
-            std::cout << "TRUE\n\n";
-        else
-            std::cout << "FALSE\n\n";
+        std::cout << '\n';
+        if (ch == 7)
+            break;
     } while (ch != 7);
 }

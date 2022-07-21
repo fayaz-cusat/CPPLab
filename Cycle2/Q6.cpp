@@ -5,7 +5,8 @@ class student
     int roll;
 
 public:
-    student(int x) : roll(x) { std::cout << "student constructor called!\n"; }
+    student(){};
+    student(int x) : roll(x) {}
     int get_roll()
     {
         std::cout << "Roll no: " << roll << '\n';
@@ -19,7 +20,8 @@ class test : virtual public student
     float *marks;
 
 public:
-    test(int x, int subs) : student(x), num_subs(subs) { std::cout << "test constructor called!\n"; }
+    test(){};
+    test(int x, int subs) : student(x), num_subs(subs) {}
     void set_marks()
     {
         std::cout << "Enter marks: ";
@@ -47,7 +49,8 @@ class sports : virtual public student
     float marks;
 
 public:
-    sports(int x) : student(x) { std::cout << "sports constructor called!\n"; }
+    sports(){};
+    sports(int x) : student(x) {}
     void set_marks()
     {
         std::cout << "Enter marks in sports: ";
@@ -66,6 +69,7 @@ class report : public sports, public test
     float total;
 
 public:
+    report(){};
     report(int x, int subs) : test(x, subs), sports(x), student(x){};
     void show()
     {
@@ -84,13 +88,23 @@ public:
 
 int main()
 {
-    int roll, num_subs;
-    std::cout << "Enter roll no: ";
-    std::cin >> roll;
-    std::cout << "Enter number of subjects: ";
-    std::cin >> num_subs;
-    report rp(roll, num_subs);
-    rp.test::set_marks();
-    rp.sports::set_marks();
-    rp.show();
+    int num;
+    std::cout << "Enter number of students: ";
+    std::cin >> num;
+    report *reports = new report[num];
+    for (int i = 0; i < num; i++)
+    {
+        int roll, num_subs;
+        std::cout << "\nEnter roll no: ";
+        std::cin >> roll;
+        std::cout << "Enter number of subjects: ";
+        std::cin >> num_subs;
+        reports[i] = report(roll, num_subs);
+        reports[i].test::set_marks();
+        reports[i].sports::set_marks();
+    }
+    for (int i = 0; i < num; i++)
+    {
+        reports[i].show();
+    }
 }

@@ -4,8 +4,12 @@ class Vector
 {
 	int len;
 	int *arr;
-	
-	Vector(int l){len=l; arr = new int[len];}
+
+	Vector(int l)
+	{
+		len = l;
+		arr = new int[len];
+	}
 
 public:
 	Vector(){};
@@ -13,9 +17,11 @@ public:
 	{
 		std::cout << "Enter length of vector: ";
 		std::cin >> len;
+		if (len > 1000000)
+			throw "Vector size too large!";
 		arr = new int[len];
 	}
-	
+
 	void get_data()
 	{
 		std::cout << "Enter vector data: ";
@@ -32,7 +38,7 @@ public:
 		std::cout << "]\n\n";
 	}
 
-	Vector operator+(Vector& v)
+	Vector operator+(Vector &v)
 	{
 		if (len != v.len)
 			throw "Incompatible vector lengths for addition!\n";
@@ -45,13 +51,32 @@ public:
 
 int main()
 {
+	char empty;
 	Vector v1, v2, v3;
 	std::cout << "Vector 1:\n";
-	v1.get_len();
+	try
+	{
+		v1.get_len();
+	}
+	catch (const char *err)
+	{
+		std::cout << err << '\n';
+		std::cin >> empty;
+		v1.get_len();
+	}
 	v1.get_data();
 	v1.print();
 	std::cout << "Vector 2:\n";
-	v2.get_len();
+	try
+	{
+		v2.get_len();
+	}
+	catch (const char *err)
+	{
+		std::cout << err << '\n';
+		std::cin >> empty;
+		v2.get_len();
+	}
 	v2.get_data();
 	v2.print();
 	try
